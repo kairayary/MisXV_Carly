@@ -5,7 +5,12 @@
     --silver-metallic: rgba(212, 212, 216, 0.4); /* Destello plateado base */
     --silver-linear: linear-gradient(135deg, #ffffff 0%, #a2a2a2 50%, #ffffff 100%);
 }
-
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Corta cualquier elemento rebelde que quiera salirse de la pantalla */
+}
 body {
     margin: 0;
     color: #fff;
@@ -114,23 +119,19 @@ body {
 
 /* Secciones */
 section {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 60px 25px;
-    text-align: center;
+    width: 90%;          /* Toma el 90% del ancho de la pantalla del celular */
+    max-width: 600px;    /* En pantallas grandes o compus no se estira más de esto */
+    margin: 30px auto;   /* Centrado automático */
+    padding: 30px 20px;  /* Un padding más amigable para dedos en celulares */
+    box-sizing: border-box; /* Clave para que los paddings no sumen ancho extra */
     
-    /* Fondo estilo "Glassmorphism" metalizado */
+    /* El resto de tus estilos (background, blur, border, box-shadow) dejalos igual */
     background: rgba(255, 255, 255, 0.03); 
     backdrop-filter: blur(7px); 
     -webkit-backdrop-filter: blur(7px);
     border-radius: 20px;
-    
-    /* Borde sutil que simula el contorno de un espejo iluminado */
     border: 1px solid rgba(255, 255, 255, 0.1);
-    
-    /* El toque final: un resplandor plateado que rodea a cada sección */
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 
-                0 0 25px rgba(255, 255, 255, 0.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 255, 255, 0.03);
 }
 
 /* Quitamos el fondo propio a esta sección para que no se duplique el efecto */
@@ -159,23 +160,21 @@ section h2::after {
 /* Galería tipo espejo */
 .gallery {
     display: flex;
-    gap: 15px;
+    flex-wrap: wrap;       /* Hace que las fotos se apilen verticalmente en el celular */
     justify-content: center;
-    flex-wrap: wrap;
+    gap: 20px;             /* Espacio parejo entre foto y foto */
     margin-top: 20px;
 }
 
 .gallery img {
-    width: 100%;        /* Ocupa el ancho disponible */
-    max-width: 230px;   /* Evita que se estire demasiado en pantallas medianas */
-    height: 300px;
-    object-fit: cover;  /* Hace que la foto se adapte sin deformarse ni estirarse */
-    border-radius: 12px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-    transition: transform 0.4s ease, border-color 0.4s ease;
+    width: 100%;           /* Ocupa todo el ancho disponible en la tarjeta del celular */
+    max-width: 280px;      /* Tamaño ideal para que en celulares no quede gigante ni diminuta */
+    height: 380px;         /* Altura fija para que todas las fotos queden simétricas */
+    object-fit: cover;     /* Hace que la foto se recorte perfectamente sin estirarse feo */
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
 }
-
 .gallery img:hover {
     transform: scale(1.04) rotate(1deg);
     border-color: var(--neon-cyan);
