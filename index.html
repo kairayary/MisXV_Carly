@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Mis XV - New York Nights</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Cambiamos 'Great Vibes' por 'Montserrat' para un look más moderno, urbano y de marquesina neoyorquina -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Íconos para los botones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+    <div class="disco-ball-glow"></div>
+    <div class="overlay">
+        <h2>✨ MIS XV ✨</h2>
+        <h1 class="glow-text">Carlymar</h1>
+        <p class="subtitle">NEW YORK CITY NIGHT</p>
+        <a href="#count" class="btn">Descubrir invitación</a>
+    </div>
+</header>
+
+<section id="count">
+    <h2>Cuenta regresiva</h2>
+    <div id="timer"></div>
+</section>
+
+<section class="intro">
+    <h2>Mi invitación</h2>
+    <p>Hay momentos que solo ocurren una vez. Quiero compartir esta noche llena de luces, ritmo y magia con quienes forman parte de mi vida.</p>
+</section>
+
+<section>
+    <h2>Galería</h2>
+    <div class="gallery">
+        <img src="img/foto1.jpeg" alt="Carly 1">
+        <img src="img/foto2.jpeg" alt="Carly 2">
+        <img src="img/foto3.jpeg" alt="Carly 3">
+    </div>
+</section>
+
+<section class="event-details">
+    <h2>El Evento</h2>
+    <div class="event-grid">
+        <div class="event-card">
+            <i class="fa-solid fa-calendar-days"></i>
+            <p><b>Fecha:</b> Sábado 15 de Agosto de 2026</p>
+        </div>
+        <div class="event-card">
+            <i class="fa-solid fa-clock"></i>
+            <p><b>Hora:</b> 20:30 hs.</p>
+        </div>
+        <div class="event-card">
+            <i class="fa-solid fa-location-dot"></i>
+            <p><b>Lugar:</b> Club Monte Eventos<br><small>Uruguay 1004, Pres. Derqui, BS.AS.</small></p>
+        </div>
+    </div>
+</section>
+
+<section class="dress-code">
+    <h2>Dress Code</h2>
+    <div class="disco-icon">🪩</div>
+    <p class="style-title">Elegante · Sport</p>
+</section>
+
+<section class="gift">
+    <h2>🎁 Tu presencia será mi mejor regalo 🎁</h2>
+    <p>Pero si deseas colaborar con mi gran sueño, puedes hacerlo mediante transferencia bancaria:</p>
+    
+    <div class="bank-container">
+        <div class="card">
+            <div class="card-info">
+                <b>Alias</b>
+                <p id="alias">carlymar.393.dial.mp</p> 
+            </div>
+            <button onclick="copyText('alias')"><i class="fa-regular fa-copy"></i> Copiar</button>
+        </div>
+        
+        <div class="card">
+            <div class="card-info">
+                <b>CBU</b>
+                <p id="cbu">0000003100073925171209</p> 
+            </div>
+            <button onclick="copyText('cbu')"><i class="fa-regular fa-copy"></i> Copiar</button>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Ubicación</h2>
+    <iframe src="https://maps.google.com/maps?q=Uruguay%201004%2C%20Presidente%20Derqui%2C%20Buenos%20Aires&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+</section>
+
+<footer>
+    <h2>❤️❤️❤️ Gracias por acompañarme en esta noche mágica ❤️❤️❤️</h2>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
