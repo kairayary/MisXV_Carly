@@ -1,4 +1,4 @@
-// Fecha del evento actualizada: 15 de Agosto de 2026[cite: 1, 2]
+
 const target = new Date('2026-08-15T20:30:00');
 
 const timerInterval = setInterval(() => {
@@ -20,11 +20,10 @@ const timerInterval = setInterval(() => {
     document.getElementById('timer').innerHTML = `<h3>${days}d : ${h}h : ${m}m : ${sec}s</h3>`;
 }, 1000);
 
-// Función de copiado rápido con feedback visual en el botón
 function copyText(id) {
     const textToCopy = document.getElementById(id).textContent;
     navigator.clipboard.writeText(textToCopy).then(() => {
-        // Buscamos el botón que ejecutó la acción para darle feedback temporal
+
         const button = document.querySelector(`#${id}`).parentElement.nextElementSibling;
         const originalText = button.innerHTML;
         
@@ -39,3 +38,97 @@ function copyText(id) {
         console.error('Error al copiar: ', err);
     });
 }
+
+const music = document.getElementById("bgMusic");
+const discoverBtn = document.getElementById("discoverBtn");
+const musicBtn = document.getElementById("musicButton");
+
+//let playing = false;
+
+discoverBtn.addEventListener("click", () => {
+
+    if (music.paused) {
+
+        music.play().then(() => {
+
+            musicBtn.innerHTML =
+                '<i class="fa-solid fa-pause"></i>';
+
+        }).catch(err => console.log(err));
+
+    }
+
+});
+musicBtn.addEventListener("click", () => {
+    if (music.paused) {
+        music.play();
+        musicBtn.innerHTML =
+            '<i class="fa-solid fa-pause"></i>';
+
+    } else {
+        music.pause();
+        musicBtn.innerHTML =
+            '<i class="fa-solid fa-music"></i>';
+    }
+});
+music.addEventListener("play", () => {
+    musicBtn.innerHTML =
+        '<i class="fa-solid fa-pause"></i>';
+});
+
+const modal = document.getElementById("confirmModal");
+const openModal = document.getElementById("openModal");
+const closeModal = document.querySelector(".close-modal");
+openModal.onclick = () => {
+    modal.classList.add("active");
+};
+
+closeModal.onclick = () => {
+    modal.classList.remove("active");
+};
+
+window.onclick = (e) => {
+    if(e.target == modal){
+       modal.classList.remove("active");
+    }
+};
+
+document.getElementById("sendWhatsapp").onclick = () => {
+
+    const nombre = document.getElementById("guestName").value.trim();
+    const asistencia = document.getElementById("attendance").value;
+    const personas = document.getElementById("guests").value;
+    const mensaje = document.getElementById("message").value.trim();
+
+    if(nombre===""){
+        alert("Por favor ingresá tu nombre.");
+        return;
+    }
+
+    const texto =
+`✨ Confirmación de Asistencia ✨
+  🎉XV de Carlymar🎉
+
+Nombre:
+${nombre}
+
+Asistencia:
+${asistencia}
+
+Cantidad de personas:
+${personas}
+
+Mensaje:
+${mensaje || "Sin mensaje"}
+
+Muchas gracias.`;
+    const telefono = "5491151046403";
+    window.open(
+
+`https://wa.me/${telefono}?text=${encodeURIComponent(texto)}`,
+
+"_blank"
+
+);
+
+};

@@ -1,3 +1,18 @@
+*,
+*::before,
+*::after{
+    box-sizing:border-box;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
 :root {
     --bg-dark: #030408; /* Un negro aún más profundo para que el plateado resalte el doble */
     --neon-cyan: #00f2fe; 
@@ -18,58 +33,66 @@ body {
     overflow-x: hidden;
 
     background-color: var(--bg-dark);
-    /* EFECTO BOLA DISCO METALIZADA: Círculos concéntricos muy brillantes y definidos */
+    
     background-image: 
         /* Destellos plateados intensos (como cuando el haz de luz pega directo) */
         radial-gradient(circle at 15% 15%, var(--silver-bright) 0%, rgba(255,255,255,0.2) 8%, transparent 25%),
         radial-gradient(circle at 85% 40%, var(--silver-bright) 0%, rgba(255,255,255,0.15) 5%, transparent 20%),
         radial-gradient(circle at 25% 75%, var(--silver-metallic) 0%, rgba(212,212,216,0.1) 12%, transparent 30%),
         radial-gradient(circle at 75% 85%, var(--silver-bright) 0%, rgba(255,255,255,0.2) 6%, transparent 22%),
-        
-        /* El patrón de mini-espejos reflejados (puntos blancos y plata ultra nítidos) */
         radial-gradient(rgba(255, 255, 255, 0.6) 1.5px, transparent 2.5px),
         radial-gradient(rgba(212, 212, 216, 0.4) 2px, transparent 4px);
     
     /* Ajustamos el tamaño para que los destellos chicos parezcan ráfagas de la bola girando */
     background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 40px 40px, 70px 70px;
-    background-attachment: fixed;
+    background-attachment: scroll;
 }
 
 /* Hero con fondo urbano y luces reflectivas */
 .hero {
     position: relative;
-    height: 100vh;
-    /* Cambiamos la imagen por una vista nocturna e imponente del skyline de Manhattan */
+    min-height:100svh;
+    height:auto;
+    padding:40px 20px;
     background: linear-gradient(rgba(6, 7, 13, 0.4), rgba(6, 7, 13, 0.85)), 
                 url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=1600&q=80') center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-attachment: fixed; /* Opcional: genera un efecto de movimiento (parallax) al scrollear en computadoras */
+    background-attachment: scroll; /* Opcional: genera un efecto de movimiento (parallax) al scrollear en computadoras */
 }
 
 /* Simulación del destello de una bola disco sobre el header */
 .disco-ball-glow {
     position: absolute;
     top: -10%;
-    width: 200vw;
+    width:120vw;
+    max-width:1400px;
+    left:50%;
+    transform:translateX(-50%);
     height: 50vh;
     background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(0,242,254,0.05) 30%, transparent 70%);
     animation: rotateGlow 12s infinite linear;
     pointer-events: none;
 }
+@keyframes rotateGlow{
 
-@keyframes rotateGlow {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+0%{
+    transform:translateX(-50%) rotate(0deg);
+}
+
+100%{
+    transform:translateX(-50%) rotate(360deg);
+}
+
 }
 
 /* Efecto de texto iluminado */
 .glow-text {
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
-    font-size: 72px;
+    font-size:clamp(48px,12vw,72px);
     margin: 10px 0;
     text-transform: uppercase;
     letter-spacing: 4px;
@@ -88,18 +111,18 @@ body {
 }
 
 .overlay .subtitle {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    letter-spacing: 8px;
-    color: var(--neon-cyan);
-    font-size: 14px;
+    font-family:'Montserrat',sans-serif;
+    font-weight:700;
+    letter-spacing:4px;
+    font-size:clamp(11px,3vw,14px);
+    color:var(--neon-cyan);
 }
 
 /* Botón moderno estilo club nocturno */
 .btn {
     display: inline-block;
     margin-top: 30px;
-    padding: 12px 32px;
+    padding:14px 24px;
     background: var(--silver-linear);
     color: #000;
     font-weight: 600;
@@ -124,7 +147,7 @@ section {
     margin: 30px auto;   /* Centrado automático */
     padding: 30px 20px;  /* Un padding más amigable para dedos en celulares */
     box-sizing: border-box; /* Clave para que los paddings no sumen ancho extra */
-    
+     text-align: center;
     /* El resto de tus estilos (background, blur, border, box-shadow) dejalos igual */
     background: rgba(255, 255, 255, 0.03); 
     backdrop-filter: blur(7px); 
@@ -141,7 +164,7 @@ section {
 
 section h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 32px;
+    font-size:clamp(24px,6vw,32px);
     margin-bottom: 30px;
     position: relative;
     display: inline-block;
@@ -169,7 +192,8 @@ section h2::after {
 .gallery img {
     width: 100%;           /* Ocupa todo el ancho disponible en la tarjeta del celular */
     max-width: 280px;      /* Tamaño ideal para que en celulares no quede gigante ni diminuta */
-    height: 380px;         /* Altura fija para que todas las fotos queden simétricas */
+    aspect-ratio:3/4;
+    height:auto;        /* Altura fija para que todas las fotos queden simétricas */
     object-fit: cover;     /* Hace que la foto se recorte perfectamente sin estirarse feo */
     border-radius: 15px;
     border: 2px solid rgba(255, 255, 255, 0.3);
@@ -194,12 +218,21 @@ section h2::after {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     padding: 20px;
-    width: 200px;
-    transition: background 0.3s;
+    width:100%;
+    max-width:320px;
+     transition:
+        transform .35s ease,
+        background .35s ease,
+        box-shadow .35s ease;
+   
 }
 
 .event-card:hover {
     background: rgba(255, 255, 255, 0.08);
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.35);
 }
 
 .event-card i {
@@ -239,6 +272,7 @@ section h2::after {
 }
 
 .gift .card {
+
     background: rgba(255, 255, 255, 0.03);
     margin: 0;
     padding: 15px 25px;
@@ -247,21 +281,28 @@ section h2::after {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    text-align: left;
+    text-align: center;
 }
 
+.card-info{
+    flex:1;
+    text-align:center;
+}
 .card-info b {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--neon-cyan);
+   display:block;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:var(--neon-cyan);
+    text-align:center;
 }
 
 .card-info p {
-    margin: 5px 0 0 0;
-    font-family: monospace;
-    font-size: 16px;
-    letter-spacing: 1px;
+     margin:8px 0 0;
+    text-align:center;
+    font-family:monospace;
+    word-break:break-all;
+    letter-spacing:1px;
 }
 
 /* Botón de copiado con mejor respuesta táctil */
@@ -278,8 +319,15 @@ button {
     display: flex;
     align-items: center;
     gap: 8px;
+   
 }
+ button,
+.btn{
 
+    min-height:48px;
+    touch-action: manipulation;
+
+}
 button:active {
     transform: scale(0.95);
     box-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
@@ -303,10 +351,218 @@ iframe {
 }
 
 footer {
-    padding: 40px;
+    padding:30px 20px;
     text-align: center;
     background: #020204;
     font-size: 14px;
     color: #666;
     border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.modal{
+
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+    backdrop-filter:blur(8px);
+
+}
+
+.modal.active{
+    display:flex;
+}
+
+.modal-content{
+
+    width:90%;
+    max-width:420px;
+    background:rgba(20,20,25,.95);
+    border-radius:25px;
+    padding:35px;
+    border:1px solid rgba(255,255,255,.15);
+    box-shadow:
+    0 0 40px rgba(0,242,254,.25);
+    position:relative;
+    animation:showModal .35s ease;
+}
+
+@keyframes showModal{
+from{
+opacity:0;
+transform:translateY(30px) scale(.95);
+}
+
+to{
+opacity:1;
+transform:none;
+}
+}
+
+.modal-content h2{
+margin-bottom:10px;
+}
+
+.modal-content p{
+margin-bottom:25px;
+}
+
+.modal-content input,
+.modal-content select,
+.modal-content textarea{
+width:100%;
+padding:14px;
+margin-bottom:15px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.15);
+border-radius:12px;
+color:white;
+font-size:15px;
+outline:none;
+
+}
+
+.modal-content textarea{
+resize:none;
+}
+
+.modal-content input::placeholder,
+.modal-content textarea::placeholder{
+color:#bbb;
+}
+
+.modal-content select{
+cursor:pointer;
+}
+
+.modal-content button{
+width:100%;
+justify-content:center;
+
+}
+
+.close-modal{
+position:absolute;
+top:15px;
+right:20px;
+font-size:28px;
+cursor:pointer;
+color:white;
+transition:.3s;
+
+}
+
+.close-modal:hover{
+color:var(--neon-cyan);
+}
+.music-btn{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    border:none;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(8px);
+    color:white;
+    cursor:pointer;
+    font-size:22px;
+    z-index:9999;
+    transition:.3s;
+}
+
+.music-btn:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 20px rgba(0,242,254,.5);
+}
+ /* ===========================
+   Responsive
+===========================*/
+
+@media (max-width:768px){
+
+.hero{
+    padding:30px 20px;
+}
+
+.overlay h2{
+    font-size:18px;
+    letter-spacing:3px;
+}
+
+.glow-text{
+    letter-spacing:2px;
+}
+
+section{
+    width:95%;
+    padding:25px 18px;
+}
+
+.gallery{
+    gap:15px;
+}
+
+.gallery img{
+    max-width:100%;
+}
+
+.event-grid{
+    flex-direction:column;
+    align-items:center;
+}
+
+.bank-container{
+    width:100%;
+}
+}
+
+@media (max-width:480px){
+
+.hero{
+    padding:20px;
+}
+
+.glow-text{
+    font-size:48px;
+}
+
+section{
+    padding:20px 15px;
+}
+
+.style-title{
+    font-size:18px;
+}
+
+button{
+    width:100%;
+}
+
+}
+@media (min-width:992px){
+
+    body{
+        background-attachment:fixed;
+    }
+    .hero{
+        background-attachment:fixed;
+    }
+}
+
+@media (max-width:600px){
+.gift .card{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:15px;
+}
+
+.gift button{
+    width:100%;
+    justify-content:center;
+}
 }
